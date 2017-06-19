@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+  background: #455A64; /* Old browsers */
+  background: -moz-linear-gradient(top,  #455A64 0%, #E0E0E0 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #455A64 0%,#E0E0E0 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #455A64 0%,#E0E0E0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#455A64', endColorstr='#E0E0E0',GradientType=0 ); /* IE6-9 */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  overflow: hidden;
+}
+canvas {
+  /*border: 1px solid #00ACC1;*/
+  margin: 0 auto;
+  position: relative;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
