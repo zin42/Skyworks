@@ -1,17 +1,19 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<!-- include your CSS file here -->
-<!-- include your CreateJS libraries here -->
-<!-- include your js/script.js here -->
-<title>HTML 5 Freelance test</title>
-<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-<script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
-<script src="https://code.createjs.com/preloadjs-0.6.2.min.js"></script>
-<link rel="stylesheet" href="css/styles.css">
-<!-- <script src="js/script.js"></script> -->
+  <meta charset="UTF-8">
+  <!-- include your CSS file here -->
+  <!-- include your CreateJS libraries here -->
+  <!-- include your js/script.js here -->
+  <title>HTML 5 Freelance test</title>
+  <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+  <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
+  <script src="https://code.createjs.com/preloadjs-0.6.2.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- <script src="js/script.js"></script> -->
 </head>
+
 <body>
   <!-- create your canvas here -->
   <canvas id="stage" width="300" height="250"></canvas>
@@ -20,130 +22,172 @@
 
 
   <script>
-    window.onload = function(){
-
-// console.log("Junior Developer Test");
-/*////////////////////////////////////////
-  Variables
-////////////////////////////////////////*/
-
-var background,
-//Frame 1
-samsung, skyGlassMark, frame1Text, bluecopy, MS100, gradientText,
-//Frame 2
-greycopy, skybroadband, shadow,
-//Frame 3
-CTA, freeyear, bluecopy2, limited, greycopy2, sheen;
+    window.onload = function() {
 
 
-// reference to the canvas
-var stage = new createjs.Stage("stage");
-var loader = new createjs.LoadQueue(false);
+      /*////////////////////////////////////////
+        Variables
+      ////////////////////////////////////////*/
 
-//enable mouse on canvas
-stage.enableMouseOver(10);
-
-
-//register a ticker to listen for tick
-createjs.Ticker.addEventListener("tick", handleTick, false);
-
-loader.on('complete', handleAllImagesLoaded, this);
-
-
-loader.loadManifest([
-  //background
-  {id: "background", src: "images/background.png"},
-  //Frame1 Stuff
-  {id: "samsung", src: "images/Frame1/samsung.png"},
-  {id: "skyGlassMark", src: "images/Frame1/skyGlassMark.png"},
-  {id: "frame1Text", src: "images/Frame1/chooseyourreward.png"},//images/Frame1/frame1Text.png
-  {id: "bluecopy", src: "images/Frame1/bluecopy.png"},
-  {id: "MS100", src: "images/Frame1/100MS.png"},
-  {id: "gradientText", src: "images/Frame2/gradientText.png"},
-  //Frame2 Stuff
-  {id: "greycopy", src: "images/Frame2/greycopy.png"},
-  {id: "skybroadband", src: "images/Frame2/skybroadband.png"},
-  {id: "shadow", src: "images/Frame2/shadow.png"},
-  //Frame 3 Stuff
-  {id: "CTA", src: "images/Frame3/CTA.png"},
-  {id: "freeyear", src: "images/Frame3/freeyear.png"},
-  {id: "bluecopy2", src: "images/Frame3/bluecopy.png"},
-  {id: "limited", src: "images/Frame3/limitedtimeoffer.png"},
-  {id: "greycopy2", src: "images/Frame3/greycopy.png"},
-  {id: "sheen", src: "images/Frame3/sheen.png"},
-]);
+      var background,
+        //Frame 1
+        samsung, skyGlassMark, frame1Text, bluecopy, MS100, gradientText,
+        //Frame 2
+        greycopy, skybroadband, shadow,
+        //Frame 3
+        CTA, freeyear, bluecopy2, limited, greycopy2, sheen;
 
 
+      // reference to the canvas
+      var stage = new createjs.Stage("stage");
+      var loader = new createjs.LoadQueue(false);
 
-//update the stage on tick - Redraw the canvas
-function handleTick(event){
-  stage.update();
-}//end handleTick
-
-function handleAllImagesLoaded(){
-  // console.log("All the images have loaded.");
-  drawTheBannerBackground();
-} // end handleAllImagesLoaded
-
-function drawTheBannerBackground(){
-  // console.log("draw and animate the background.");
-
-  //provide the loader result for the item with id == "background"
-  background = new createjs.Bitmap(loader.getResult( "background" ));
-  samsung = new createjs.Bitmap(loader.getResult( "samsung" ));
-  skyGlassMark = new createjs.Bitmap(loader.getResult( "skyGlassMark" ));
-  frame1Text = new createjs.Bitmap(loader.getResult( "frame1Text" ));
-  bluecopy = new createjs.Bitmap(loader.getResult("bluecopy"));
-  MS100 = new createjs.Bitmap(loader.getResult("MS100"));
-  gradientText = new createjs.Bitmap(loader.getResult("gradientText"));
-  greycopy = new createjs.Bitmap(loader.getResult("greycopy"));
-  skybroadband = new createjs.Bitmap(loader.getResult("skybroadband"));
-  shadow = new createjs.Bitmap(loader.getResult("shadow"));
-  CTA = new createjs.Bitmap(loader.getResult("CTA"));
-  freeyear = new createjs.Bitmap(loader.getResult("freeyear"));
-  bluecopy2 = new createjs.Bitmap(loader.getResult("bluecopy2"));
-  limited = new createjs.Bitmap(loader.getResult("limited"));
-  greycopy2 = new createjs.Bitmap(loader.getResult("greycopy2"));
-  sheen = new createjs.Bitmap(loader.getResult("sheen"));
-
-  background.alpha = 0;
-  samsung.alpha = 0;
-  skyGlassMark.alpha = 0;
-  frame1Text.alpha = 0;
-  MS100.alpha = 0;
-  bluecopy.alpha = 0;
-  gradientText.alpha = 0;
-  greycopy.alpha = 0;
-  skybroadband.y = -400;
-  shadow.alpha = 0;
-  CTA.alpha = 1;
-  freeyear.alpha = 0;
-  bluecopy2.alpha = 0;
-  limited.alpha = 0;
-  greycopy2.alpha = 0;
-  sheen.alpha = 0;
-  sheen.y = -40;
-  sheen.x = -20;
+      //enable mouse on canvas
+      stage.enableMouseOver(10);
 
 
-  //add stage to background
-  stage.addChild(background);
+      //register a ticker to listen for tick
+      createjs.Ticker.addEventListener("tick", handleTick, false);
 
-  // frame1();
-  // frame2();
+      loader.on('complete', handleAllImagesLoaded, this);
 
-  setTimeout(frame1, 100);
-  setTimeout(frame2, 5000);
-  setTimeout(frame3, 10000);
-}//end drawTheBannerBackground
+
+      loader.loadManifest([
+        //background
+        {
+          id: "background",
+          src: "images/background.png"
+        },
+        //Frame1 Stuff
+        {
+          id: "samsung",
+          src: "images/Frame1/samsung.png"
+        },
+        {
+          id: "skyGlassMark",
+          src: "images/Frame1/skyGlassMark.png"
+        },
+        {
+          id: "frame1Text",
+          src: "images/Frame1/chooseyourreward.png"
+        }, //images/Frame1/frame1Text.png
+        {
+          id: "bluecopy",
+          src: "images/Frame1/bluecopy.png"
+        },
+        {
+          id: "MS100",
+          src: "images/Frame1/100MS.png"
+        },
+        {
+          id: "gradientText",
+          src: "images/Frame2/gradientText.png"
+        },
+        //Frame2 Stuff
+        {
+          id: "greycopy",
+          src: "images/Frame2/greycopy.png"
+        },
+        {
+          id: "skybroadband",
+          src: "images/Frame2/skybroadband.png"
+        },
+        {
+          id: "shadow",
+          src: "images/Frame2/shadow.png"
+        },
+        //Frame 3 Stuff
+        {
+          id: "CTA",
+          src: "images/Frame3/CTA.png"
+        },
+        {
+          id: "freeyear",
+          src: "images/Frame3/freeyear.png"
+        },
+        {
+          id: "bluecopy2",
+          src: "images/Frame3/bluecopy.png"
+        },
+        {
+          id: "limited",
+          src: "images/Frame3/limitedtimeoffer.png"
+        },
+        {
+          id: "greycopy2",
+          src: "images/Frame3/greycopy.png"
+        },
+        {
+          id: "sheen",
+          src: "images/Frame3/sheen.png"
+        },
+      ]);
+
+
+
+      //update the stage on tick - Redraw the canvas
+      function handleTick(event) {
+        stage.update();
+      } //end handleTick
+
+      function handleAllImagesLoaded() {
+        drawTheBannerBackground();
+      } // end handleAllImagesLoaded
+
+      function drawTheBannerBackground() {
+
+        //provide the loader result for the item with id == "background"
+        background = new createjs.Bitmap(loader.getResult("background"));
+        samsung = new createjs.Bitmap(loader.getResult("samsung"));
+        skyGlassMark = new createjs.Bitmap(loader.getResult("skyGlassMark"));
+        frame1Text = new createjs.Bitmap(loader.getResult("frame1Text"));
+        bluecopy = new createjs.Bitmap(loader.getResult("bluecopy"));
+        MS100 = new createjs.Bitmap(loader.getResult("MS100"));
+        gradientText = new createjs.Bitmap(loader.getResult("gradientText"));
+        greycopy = new createjs.Bitmap(loader.getResult("greycopy"));
+        skybroadband = new createjs.Bitmap(loader.getResult("skybroadband"));
+        shadow = new createjs.Bitmap(loader.getResult("shadow"));
+        CTA = new createjs.Bitmap(loader.getResult("CTA"));
+        freeyear = new createjs.Bitmap(loader.getResult("freeyear"));
+        bluecopy2 = new createjs.Bitmap(loader.getResult("bluecopy2"));
+        limited = new createjs.Bitmap(loader.getResult("limited"));
+        greycopy2 = new createjs.Bitmap(loader.getResult("greycopy2"));
+        sheen = new createjs.Bitmap(loader.getResult("sheen"));
+
+        background.alpha = 0;
+        samsung.alpha = 0;
+        skyGlassMark.alpha = 0;
+        frame1Text.alpha = 0;
+        MS100.alpha = 0;
+        bluecopy.alpha = 0;
+        gradientText.alpha = 0;
+        greycopy.alpha = 0;
+        skybroadband.y = -400;
+        shadow.alpha = 0;
+        CTA.alpha = 1;
+        freeyear.alpha = 0;
+        bluecopy2.alpha = 0;
+        limited.alpha = 0;
+        greycopy2.alpha = 0;
+        sheen.alpha = 0;
+        sheen.x = -20;
+
+
+        //add stage to background
+        stage.addChild(background);
+
+
+        setTimeout(frame1, 100);
+        setTimeout(frame2, 5000);
+        setTimeout(frame3, 10000);
+      } //end drawTheBannerBackground
 
 
       /*////////
         Frames
       ////////*/
       // frame1
-      function frame1(){
-        // console.log("draw and animate frame one.");
+      function frame1() {
 
 
         /*~//////////////////
@@ -170,127 +214,183 @@ function drawTheBannerBackground(){
 
 
         createjs.Tween.get(background)
-        .to({alpha: 1}, 1000);
+          .to({
+            alpha: 1
+          }, 1000);
 
         createjs.Tween.get(skyGlassMark)
-        .to({alpha: 1}, 1000);
+          .to({
+            alpha: 1
+          }, 1000);
 
         createjs.Tween.get(samsung)
-        .to({alpha: 1}, 1000)
-        .wait(3000)
-        .to({alpha: 0}, 1000);
+          .to({
+            alpha: 1
+          }, 1000)
+          .wait(3000)
+          .to({
+            alpha: 0
+          }, 1000);
 
 
         createjs.Tween.get(frame1Text)
-        .wait(1000)
-        .to({alpha: 1}, 1000)
-        .wait(2000)
-        .to({alpha: 0}, 1000);
+          .wait(1000)
+          .to({
+            alpha: 1
+          }, 1000)
+          .wait(2000)
+          .to({
+            alpha: 0
+          }, 1000);
 
 
         createjs.Tween.get(bluecopy)
-        .wait(2000)
-        .to({alpha:1}, 1000)
-        .wait(1000)
-        .to({alpha: 0}, 1000);
+          .wait(2000)
+          .to({
+            alpha: 1
+          }, 1000)
+          .wait(1000)
+          .to({
+            alpha: 0
+          }, 1000);
 
         createjs.Tween.get(MS100)
-        .to({alpha: 1}, 1000)
-        .wait(3000)
-        .to({alpha: 0}, 1000);
+          .to({
+            alpha: 1
+          }, 1000)
+          .wait(3000)
+          .to({
+            alpha: 0
+          }, 1000);
       }
 
-      function frame2(){
-          // console.log("frame2");
+      function frame2() {
 
-      /*~//////////////////
-        Add these elements
-      //////////////////~*/
-          stage.addChild(gradientText);
-          stage.addChild(greycopy);
-          stage.addChild(skybroadband);
-          stage.addChild(shadow);
-      /*~////////
-        Timeline
-      /////////~*/
-          createjs.Tween.get(gradientText)
-          .to({alpha: 1}, 1000)
+        /*~//////////////////
+          Add these elements
+        //////////////////~*/
+        stage.addChild(gradientText);
+        stage.addChild(greycopy);
+        stage.addChild(skybroadband);
+        stage.addChild(shadow);
+        /*~////////
+          Timeline
+        /////////~*/
+        createjs.Tween.get(gradientText)
+          .to({
+            alpha: 1
+          }, 1000)
           .wait(3000)
-          .to({alpha: 0}, 1000);
+          .to({
+            alpha: 0
+          }, 1000);
 
-          createjs.Tween.get(greycopy)
+        createjs.Tween.get(greycopy)
           .wait(1000)
-          .to({alpha: 1}, 1000)
+          .to({
+            alpha: 1
+          }, 1000)
           .wait(2000)
-          .to({alpha: 0}, 1000);
+          .to({
+            alpha: 0
+          }, 1000);
 
-          createjs.Tween.get(skybroadband)
-          .to({y: 0 }, 1000, createjs.Ease.getPowInOut(2.5))
-          .to({y: -7}, 250, createjs.Ease.getPowInOut(3))
-          .to({y: 0}, 250, createjs.Ease.getPowInOut(3))
-          .to({y: -3}, 250, createjs.Ease.getPowInOut(3))
-          .to({y: 0}, 250, createjs.Ease.getPowInOut(3))
+        createjs.Tween.get(skybroadband)
+          .to({
+            y: 0
+          }, 1000, createjs.Ease.getPowInOut(2.5))
+          .to({
+            y: -7
+          }, 250, createjs.Ease.getPowInOut(3))
+          .to({
+            y: 0
+          }, 250, createjs.Ease.getPowInOut(3))
+          .to({
+            y: -3
+          }, 250, createjs.Ease.getPowInOut(3))
+          .to({
+            y: 0
+          }, 250, createjs.Ease.getPowInOut(3))
           .wait(2000)
-          .to({alpha: 0}, 1000);
+          .to({
+            alpha: 0
+          }, 1000);
 
-          createjs.Tween.get(shadow)
-          .to({alpha: 1 }, 1000, createjs.Ease.getPowInOut(2.5))
-          .to({alpha: 0.3}, 250, createjs.Ease.getPowInOut(3))
-          .to({alpha: 1}, 250, createjs.Ease.getPowInOut(2.5))
-          .to({alpha: 0.5}, 250, createjs.Ease.getPowInOut(3))
-          .to({alpha: 1}, 250, createjs.Ease.getPowInOut(2.5))
+        createjs.Tween.get(shadow)
+          .to({
+            alpha: 1
+          }, 1000, createjs.Ease.getPowInOut(2.5))
+          .to({
+            alpha: 0.3
+          }, 250, createjs.Ease.getPowInOut(3))
+          .to({
+            alpha: 1
+          }, 250, createjs.Ease.getPowInOut(2.5))
+          .to({
+            alpha: 0.5
+          }, 250, createjs.Ease.getPowInOut(3))
+          .to({
+            alpha: 1
+          }, 250, createjs.Ease.getPowInOut(2.5))
           .wait(2000)
-          .to({alpha: 0}, 1000);
+          .to({
+            alpha: 0
+          }, 1000);
 
-          // setTimeout(alert("finished"), 5000);
-      }// End frame2();
 
-      function frame3(){
-          // setTimeout(alert("finished"), 200);
-          // console.log("frame3");
+      } // End frame2();
 
-          /*~//////////////////
-            Add these elements
-          //////////////////~*/
-          stage.addChild(CTA);
-          stage.addChild(freeyear);
-          stage.addChild(bluecopy2);
-          stage.addChild(limited);
-          stage.addChild(greycopy2);
-          stage.addChild(sheen);
-          /*~///////
-            Timeline
-          ////////~*/
-          createjs.Tween.get(freeyear)
-          .to({alpha: 1}, 1000);
+      function frame3() {
+        /*~//////////////////
+          Add these elements
+        //////////////////~*/
+        stage.addChild(CTA);
+        stage.addChild(freeyear);
+        stage.addChild(bluecopy2);
+        stage.addChild(limited);
+        stage.addChild(greycopy2);
+        stage.addChild(sheen);
+        /*~///////
+          Timeline
+        ////////~*/
+        createjs.Tween.get(freeyear)
+          .to({
+            alpha: 1
+          }, 1000);
 
-          createjs.Tween.get(bluecopy2)
+        createjs.Tween.get(bluecopy2)
           .wait(1000)
-          .to({alpha: 1}, 1000);
+          .to({
+            alpha: 1
+          }, 1000);
 
-          createjs.Tween.get(limited)
+        createjs.Tween.get(limited)
           .wait(2000)
-          .to({alpha: 1}, 1000);
+          .to({
+            alpha: 1
+          }, 1000);
 
-          createjs.Tween.get(greycopy2)
+        createjs.Tween.get(greycopy2)
           .wait(3000)
-          .to({alpha: 1}, 1000)
+          .to({
+            alpha: 1
+          }, 1000)
 
-          createjs.Tween.get(sheen)
+        createjs.Tween.get(sheen)
           .wait(4000)
-          .to({ x: 0, y: 0, alpha: 1}, 1000, createjs.Ease.getPowInOut(2)) //  sheen.y = -10; sheen.x = -60;
+          .to({
+            x: 0,
+            alpha: 1
+          }, 1000, createjs.Ease.getPowInOut(2)) //  sheen.y = -10; sheen.x = -60;
 
 
 
-      }// End frame3();
+      } // End frame3();
 
-    }// End window.onload();
-
-
-
-
+    } // End window.onload();
   </script>
 
 
 </body>
+
 </html>
