@@ -295,44 +295,23 @@
             alpha: 0
           }, 1000);
 
+
+        // bounce skybroadband image
         createjs.Tween.get(skybroadband)
           .to({
             y: 0
-          }, 1000, createjs.Ease.getPowInOut(2.5))
-          .to({
-            y: -7
-          }, 250, createjs.Ease.getPowInOut(3))
-          .to({
-            y: 0
-          }, 250, createjs.Ease.getPowInOut(3))
-          .to({
-            y: -3
-          }, 250, createjs.Ease.getPowInOut(3))
-          .to({
-            y: 0
-          }, 250, createjs.Ease.getPowInOut(3))
-          .wait(2000)
+          }, 1000, createjs.Ease.bounceOut)
+          .wait(3000)
           .to({
             alpha: 0
           }, 1000);
 
+        //bounce shadow
         createjs.Tween.get(shadow)
           .to({
-            alpha: 1
-          }, 1000, createjs.Ease.getPowInOut(2.5))
-          .to({
-            alpha: 0.3
-          }, 250, createjs.Ease.getPowInOut(3))
-          .to({
-            alpha: 1
-          }, 250, createjs.Ease.getPowInOut(2.5))
-          .to({
-            alpha: 0.5
-          }, 250, createjs.Ease.getPowInOut(3))
-          .to({
-            alpha: 1
-          }, 250, createjs.Ease.getPowInOut(2.5))
-          .wait(2000)
+            alpha: 0.8
+          }, 1000, createjs.Ease.bounceOut)
+          .wait(3000)
           .to({
             alpha: 0
           }, 1000);
